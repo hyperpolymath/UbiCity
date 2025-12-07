@@ -207,11 +207,16 @@ function hashString(str) {
  * @returns {string} Sanitized text
  */
 function sanitizeText(text) {
-  let sanitized = text;
+  // Limit input length to prevent ReDoS attacks
+  const MAX_TEXT_LENGTH = 10000;
+  let sanitized = text.length > MAX_TEXT_LENGTH
+    ? text.slice(0, MAX_TEXT_LENGTH)
+    : text;
 
-  // Email addresses
+  // Email addresses - use possessive-like matching to prevent backtracking
+  // Pattern: local part (alphanumeric, limited special chars) @ domain
   sanitized = sanitized.replace(
-    /[\w.-]+@[\w.-]+\.\w+/g,
+    /[a-zA-Z0-9](?:[a-zA-Z0-9._-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9](?:[a-zA-Z0-9.-]{0,252}[a-zA-Z0-9])?\.[a-zA-Z]{2,63}/g,
     '[email]'
   );
 
@@ -221,9 +226,9 @@ function sanitizeText(text) {
     '[phone]'
   );
 
-  // URLs
+  // URLs - use non-greedy matching with explicit character class
   sanitized = sanitized.replace(
-    /https?:\/\/[^\s]+/g,
+    /https?:\/\/[^\s]{1,2000}/g,
     '[url]'
   );
 

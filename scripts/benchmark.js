@@ -7,9 +7,20 @@
 
 import { UrbanKnowledgeMapper } from '../src/mapper.js';
 import { PerformanceMonitor, benchmark } from '../src/performance.js';
-import { randomUUID } from 'crypto';
+import { randomUUID, randomBytes } from 'crypto';
 
 const DATASET_SIZES = [10, 50, 100, 500, 1000];
+
+/**
+ * Generate a cryptographically secure random float between 0 and 1
+ * @returns {number} Random float in range [0, 1)
+ */
+function secureRandomFloat() {
+  // Use 4 bytes to create a 32-bit unsigned integer, then normalize to [0, 1)
+  const bytes = randomBytes(4);
+  const uint32 = bytes.readUInt32BE(0);
+  return uint32 / 0x100000000;
+}
 
 async function generateTestData(count) {
   const mapper = new UrbanKnowledgeMapper('/tmp/benchmark-ubicity');
@@ -26,8 +37,8 @@ async function generateTestData(count) {
         location: {
           name: locations[i % locations.length],
           coordinates: {
-            latitude: 37.7749 + (Math.random() - 0.5) * 0.1,
-            longitude: -122.4194 + (Math.random() - 0.5) * 0.1,
+            latitude: 37.7749 + (secureRandomFloat() - 0.5) * 0.1,
+            longitude: -122.4194 + (secureRandomFloat() - 0.5) * 0.1,
           },
         },
       },
