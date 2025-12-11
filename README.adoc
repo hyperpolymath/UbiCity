@@ -1,76 +1,374 @@
-= UbiCity
-Jonathan D.A. Jewell <jonathan.jewell@gmail.com>
-:toc: macro
-:icons: font
-:source-highlighter: rouge
-:experimental:
-:url-github: https://github.com/hyperpolymath/UbiCity
-:url-gitlab: https://gitlab.com/hyperpolymath/UbiCity
-:url-bitbucket: https://bitbucket.org/hyperpolymath/UbiCity
-:url-codeberg: https://codeberg.org/hyperpolymath/UbiCity
+= UbiCity Learning Capture System
 
-Ubiquitous city computing platform
+> *Making the city itself a learning environment, one captured experience at a time.*
 
-image:https://img.shields.io/badge/RSR-Certified-gold[RSR Certified]
-image:https://img.shields.io/badge/License-AGPL%20v3-blue[License]
+== What Is This?
 
-toc::[]
+UbiCity (the Ubiquitous City of Learning) is a vision for dissolving the boundaries between formal education and urban exploration. This repository contains *practical tools* to capture, map, and analyze learning experiences that happen outside traditional institutional boundaries.
 
-== Overview
+Instead of waiting for infrastructure, we're building tools to document urban learning *as it happens* - creating a corpus of learning experiences that can reveal patterns invisible within traditional educational frameworks.
 
-UbiCity is part of the link:https://rhodium.sh[Rhodium Standard] (RSR) ecosystem.
+== The Problem
 
-Domain: *smart-cities*
+You have an expansive vision (UbiCity) but need concrete next steps. How do you move from concept to practice without:
 
-== Installation
+1. Infinite scope creep
+2. Analysis paralysis
+3. Building technology before validating the idea
+4. Losing the essence in the implementation
 
-[source,bash]
-----
-# Clone from GitHub (primary)
-git clone {url-github}
+== This Solution
 
-# Or from mirrors
-git clone {url-gitlab}
-git clone {url-codeberg}
-----
+*Start with data, not infrastructure.* Capture learning experiences using a minimal protocol, then use analysis tools to discover what patterns emerge organically.
 
-== RSR Stack
+=== What You Get
 
-This project follows RSR conventions:
+- 📋 *JSON Schema* - Structured format for learning experiences
+- 🎯 *Capture Tool* - CLI for recording experiences in the moment
+- 🗺️ *Mapper* - Analysis engine finding connections and patterns
+- 📊 *Minimal Viable Protocol* - The simplest possible UbiCity instantiation
+- 🔍 *Export to Voyant* - Text analysis integration for deeper insights
 
-* ✅ ReScript for frontend/logic
-* ✅ Deno for JS runtime
-* ✅ WASM for performance-critical code
-* ✅ Rust/OCaml/Haskell for systems/proofs
-* ✅ Guile/Scheme for configuration
-* ❌ No TypeScript
-* ❌ No Go
-* ❌ No npm
+== Quick Start
 
-== Mirrors
+=== Installation
 
-[cols="1,2"]
-|===
-| Platform | URL
+```bash
+cd ubicity
+npm install  # if needed for dependencies
+chmod +x capture.js  # make capture tool executable
+```
 
-| GitHub (primary) | {url-github}
-| GitLab | {url-gitlab}
-| Bitbucket | {url-bitbucket}
-| Codeberg | {url-codeberg}
-|===
+=== Capture Your First Experience
 
-== License
+*Option 1: Quick capture (30 seconds)*
+```bash
+node capture.js quick
+```
 
-Licensed under AGPL-3.0-or-later OR LicenseRef-Palimpsest-0.5.
+*Option 2: Full capture (2 minutes)*
+```bash
+node capture.js full
+```
 
-See link:LICENSE[LICENSE] for details.
+*Option 3: Generate a template to edit*
+```bash
+node capture.js template > my-experience.json
+= Edit the JSON file, then manually add to ubicity-data/experiences/
+```
+
+=== Analyze Your Experiences
+
+*Generate a full report:*
+```bash
+node mapper.js report
+```
+
+*Find learning hotspots:*
+```bash
+node mapper.js hotspots
+```
+
+*View domain connection network:*
+```bash
+node mapper.js network
+```
+
+*Track a learner's journey:*
+```bash
+node mapper.js learner <learner-id>
+```
+
+== The 4-Week Experiment
+
+Want to test if UbiCity works for you? Follow the protocol in `MINIMAL_VIABLE_PROTOCOL.md`:
+
+- *Week 1*: Capture 5 learning experiences in different locations
+- *Week 2*: Run analysis, look for patterns
+- *Week 3*: Decide to stop or add one collaborator
+- *Week 4*: Meet and discuss, capture that collaboration
+
+*Success criteria*: If you found one unexpected connection and generated one new question, UbiCity works at minimum viable scale.
+
+== Data Model
+
+=== Core Structure (MVP)
+
+Every learning experience needs:
+
+```json
+{
+  "learner": {
+    "id": "who learned"
+  },
+  "context": {
+    "location": {
+      "name": "where they learned"
+    }
+  },
+  "experience": {
+    "type": "what kind of learning",
+    "description": "what they learned"
+  }
+}
+```
+
+=== Optional Enrichment
+
+Add any of these to deepen analysis:
+
+- *Learner background/interests* - For finding similar learners
+- *GPS coordinates* - For spatial mapping
+- *Situation/connections* - Who else was involved
+- *Domains* - Disciplinary areas (enables interdisciplinary analysis)
+- *Artifacts* - Photos, sketches, code created
+- *Outcome* - Success/failure, new questions, unexpected connections
+- *Tags/privacy* - Organization and access control
+
+Full schema: `schema/learning-experience.json`
+
+== Analysis Capabilities
+
+The mapper provides several analytical lenses:
+
+=== 1. Interdisciplinary Connections
+
+Find experiences that span multiple domains:
+
+```javascript
+mapper.findInterdisciplinaryConnections()
+```
+
+Returns learning moments where different disciplines met, often yielding unexpected insights.
+
+=== 2. Learning Hotspots
+
+Identify locations with high disciplinary diversity:
+
+```javascript
+mapper.findLearningHotspots()
+```
+
+These are places where the city itself facilitates cross-domain learning.
+
+=== 3. Domain Networks
+
+See which disciplines frequently co-occur:
+
+```javascript
+mapper.generateDomainNetwork()
+```
+
+Reveals the natural boundaries (or lack thereof) between fields in practice.
+
+=== 4. Learner Journeys
+
+Track how individuals' interests evolve:
+
+```javascript
+mapper.getLearnerJourney(learnerId)
+```
+
+Shows progression, new domains discovered, questions emerged.
+
+=== 5. Location Mapping
+
+Understand the learning characteristics of places:
+
+```javascript
+mapper.mapByLocation()
+```
+
+How many different disciplines meet at each location? How many unique learners?
+
+== Use Cases
+
+=== For Individuals
+- Document self-directed learning
+- Find patterns in your interests
+- Justify learning time to yourself/others
+- Create a learning portfolio
+
+=== For Small Groups
+- Track collaborative learning
+- Find intersection of interests
+- Identify productive meeting locations
+- Build shared knowledge maps
+
+=== For Researchers
+- Study informal learning patterns
+- Analyze urban learning environments
+- Generate papers from captured data
+- Validate educational theories in practice
+
+=== For Institutions
+- Understand learning outside classroom
+- Find community partners
+- Document experiential learning
+- Support lifelong learners
+
+== Integration with Existing Tools
+
+=== Zotero Connection
+
+This repo started as a Zotero → Voyant exporter. The connection:
+
+- *Zotero*: Captures research reading and sources
+- *UbiCity*: Captures experiential learning and practice
+- *Voyant*: Analyzes text patterns in both
+
+You can export UbiCity experiences to Voyant:
+
+```javascript
+const mapper = new UrbanKnowledgeMapper();
+mapper.loadAll();
+const corpus = mapper.exportToVoyant();
+// Upload corpus to Voyant for text analysis
+```
+
+=== Other Integrations
+
+- *Echomesh*: Context preservation across time
+- *JanusKey*: Reversible operations for experimental learning
+- *Oblíbený*: Type-safe learning protocols
+- *MAA Framework*: Accountability in public learning spaces
+
+== Scaling Considerations
+
+=== Don't Scale Until You Have 50+ Experiences
+
+Seriously. Capture data first. Then:
+
+1. *Add visualization* - Map experiences geographically
+2. *Add recommendations* - "Learners like you also explored..."
+3. *Add mobile capture* - Quick smartphone entry
+4. *Add social features* - Share discoveries
+5. *Add institutional integration* - Course credit, portfolios
+
+But each of these is *optional*. The core works with just the CLI tools.
+
+== Design Principles
+
+=== 1. *Capture First, Analyze Later*
+Minimize friction in the moment. Rich analysis can wait.
+
+=== 2. *Privacy by Default*
+Pseudonymous learner IDs. Privacy levels. Opt-in sharing.
+
+=== 3. *Failures Are Data*
+Experiments that fail still generate valuable learning experiences.
+
+=== 4. *Location Matters*
+Where you learn shapes what you learn. The city is co-teacher.
+
+=== 5. *Interdisciplinary by Nature*
+Cities don't respect academic boundaries. Neither should learning.
+
+=== 6. *Incomplete Is Better Than Perfect*
+A sketchy capture is better than waiting for perfect data.
+
+=== 7. *Tools, Not Platforms*
+Composable tools you control, not a locked-in platform.
+
+== Project Philosophy
+
+This is *not a startup*. Not a platform. Not a product.
+
+This is *infrastructure for a practice* - like a yoga mat or a notebook.
+
+UbiCity isn't something to complete. It's a continuous process:
+
+- You capture experiences
+- Patterns emerge
+- You explore those patterns
+- New questions arise
+- You capture more experiences
+- Patterns evolve
+
+The tools here support that cycle. They don't try to optimize it, gamify it, or monetize it.
+
+== Connection to Your Other Work
+
+=== Formal Methods
+- Learning experiences as verifiable events
+- Safety properties: learner wellbeing, privacy
+- Verification conditions for "successful learning"
+
+=== Solidarity Economics
+- Learning as commons, not commodity
+- Mutual accountability in public learning
+- Skills-sharing over credentials
+
+=== Phase-Separated Development
+- MVP protocol provides clear phase boundaries
+- Each week of experiment is a phase
+- Natural pause points prevent scope creep
+
+=== Seven Tentacles Framework
+- Character-driven narrative of learning journeys
+- Urban spaces as characters in learning story
+- Multi-threaded exploration of ideas
+
+== Next Steps
+
+=== If This Resonates (Immediate)
+
+1. Read `MINIMAL_VIABLE_PROTOCOL.md`
+2. Capture one experience right now
+3. Decide: 4-week experiment or not?
+
+=== If You Want to Extend (Month 2+)
+
+1. Add visualization (D3.js maps of learning)
+2. Create web interface (form + map view)
+3. Integrate with Zotero (reading → practice)
+4. Write paper: "Formal Verification of Urban Learning Systems"
+
+=== If This Becomes a Life Project
+
+1. Establish quarterly 4-week cycles
+2. Each cycle explores new aspect
+3. Publish findings after each cycle
+4. Tools evolve based on real usage
+5. Community emerges organically
 
 == Contributing
 
-See link:CONTRIBUTING.adoc[CONTRIBUTING.adoc].
+This is a personal exploration toolkit, but if UbiCity resonates with you:
 
-== Metadata
+- Capture your own experiences
+- Share patterns you discover
+- Extend the tools for your context
+- Write about your experiments
 
-* Domain: smart-cities
-* Framework: RSR (Rhodium Standard Repository)
-* Dublin Core: link:.well-known/dc.xml[.well-known/dc.xml]
+The GPL3 license means you can fork, modify, and share freely.
+
+== Credits
+
+- *Concept*: UbiCity vision from 2017+ work with UAL Creative Communities
+- *Implementation*: Built on learnings from zotero-voyant-export project
+- *Inspiration*: Voyant (text analysis), Zotero (research management), and years of trying to formalize the informal
+
+== License
+
+GPL3 - Same as the original zotero-voyant-export project.
+
+Learning should be free as in freedom.
+
+---
+
+== Get Started
+
+```bash
+node capture.js quick
+```
+
+Then:
+
+```bash
+node mapper.js report
+```
+
+That's it. You're doing UbiCity.
+
+Welcome to the Ubiquitous City of Learning. 🏙️
