@@ -146,7 +146,7 @@ verify:offline-first:
       # Verify no network calls in source
       echo "Checking for network calls..."
       ! grep -r "fetch(" src/ && echo "✅ No fetch() calls" || (echo "❌ Found fetch() calls" && exit 1)
-      ! grep -r "http://" src/ && echo "✅ No HTTP URLs in source" || echo "⚠️  HTTP URLs found (check if documentation)"
+      ! grep -r "https://" src/ && echo "✅ No HTTP URLs in source" || echo "⚠️  HTTP URLs found (check if documentation)"
       ! grep -r "https://" src/ && echo "✅ No HTTPS URLs in source" || echo "⚠️  HTTPS URLs found (check if documentation)"
 
       echo ""

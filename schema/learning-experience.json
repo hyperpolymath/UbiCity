@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft-07/schema#",
   "$id": "https://ubicity.learning/schema/learning-experience.json",
   "title": "UbiCity Learning Experience",
   "description": "A structured capture of a learning moment in urban space",
