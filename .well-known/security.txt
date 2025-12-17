@@ -1,7 +1,9 @@
-Contact: mailto:security@ubicity.example.org
+Contact: https://github.com/hyperpolymath/ubicity/security/advisories/new
+Contact: mailto:hyperpolymath@proton.me
 Expires: 2026-12-31T23:59:59Z
 Preferred-Languages: en
-Canonical: https://github.com/Hyperpolymath/ubicity/.well-known/security.txt
+Canonical: https://github.com/hyperpolymath/ubicity/.well-known/security.txt
+Policy: https://github.com/hyperpolymath/ubicity/security/policy
 
 # Security Policy
 
@@ -19,9 +21,11 @@ Canonical: https://github.com/Hyperpolymath/ubicity/.well-known/security.txt
 
 Instead:
 
-1. **Email**: security@ubicity.example.org (PGP key available on request)
-2. **Expected Response**: Within 48 hours
-3. **Disclosure Timeline**: 90 days coordinated disclosure
+1. **Preferred**: GitHub Security Advisories (private reporting)
+   https://github.com/hyperpolymath/ubicity/security/advisories/new
+2. **Alternative**: Direct email to maintainer (hyperpolymath@proton.me)
+3. **Expected Response**: Within 48 hours
+4. **Disclosure Timeline**: 90 days coordinated disclosure
 
 ## Security Measures
 

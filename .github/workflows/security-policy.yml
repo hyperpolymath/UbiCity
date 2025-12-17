@@ -22,10 +22,10 @@ jobs:
             echo "$WEAK_CRYPTO"
           fi
           
-          # Block HTTP URLs (except localhost)
-          HTTP_URLS=$(grep -rE 'https://[^l][^o][^c]' --include="*.py" --include="*.js" --include="*.ts" --include="*.go" --include="*.rs" --include="*.yaml" --include="*.yml" . 2>/dev/null | grep -v 'localhost\|127.0.0.1\|example\|test\|spec' | head -5 || true)
+          # Block HTTP URLs (except localhost) - enforce HTTPS
+          HTTP_URLS=$(grep -rE 'http://[^l][^o][^c]' --include="*.py" --include="*.js" --include="*.ts" --include="*.go" --include="*.rs" --include="*.yaml" --include="*.yml" . 2>/dev/null | grep -v 'localhost\|127.0.0.1\|example\|test\|spec\|schema' | head -5 || true)
           if [ -n "$HTTP_URLS" ]; then
-            echo "⚠️ HTTP URLs found. Use HTTPS:"
+            echo "⚠️ Insecure HTTP URLs found. Use HTTPS:"
             echo "$HTTP_URLS"
           fi
           

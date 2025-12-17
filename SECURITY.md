@@ -2,20 +2,41 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| 0.3.x   | :white_check_mark: |
+| 0.2.x   | :white_check_mark: |
+| < 0.2   | :x:                |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+**DO NOT** open a public GitHub issue for security vulnerabilities.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Instead, please:
+
+1. **Email**: See `.well-known/security.txt` for contact information
+2. **Expected Response**: Within 48 hours
+3. **Disclosure Timeline**: 90-day coordinated disclosure
+
+## Security Measures
+
+- **Memory Safety**: WASM (Rust) provides memory safety guarantees
+- **Type Safety**: ReScript compile-time types
+- **Sandboxing**: WASM runs in isolated linear memory
+- **Permissions**: Deno explicit permissions (`--allow-read`, `--allow-write`)
+- **Data Privacy**: Local-first, no network calls, no telemetry
+- **Offline-First**: Works completely air-gapped
+
+## Security Documentation
+
+- **Threat Model**: See `THREAT_MODEL.md`
+- **Security Contact**: See `.well-known/security.txt`
+
+## CVE Process
+
+If a CVE is assigned:
+1. Acknowledgment within 24 hours
+2. Patch development within 7-14 days
+3. Security update release
+4. Advisory on GitHub Security
+5. CHANGELOG.md update

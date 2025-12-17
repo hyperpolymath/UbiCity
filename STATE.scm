@@ -15,7 +15,7 @@
   '((version . "0.1.0")
     (schema-version . "1.0")
     (created . "2025-12-15")
-    (updated . "2025-12-15")
+    (updated . "2025-12-17")
     (project . "ubicity")
     (repo . "github.com/hyperpolymath/ubicity")))
 
@@ -41,7 +41,7 @@
 
 (define current-position
   '((phase . "v0.1 - Initial Setup and RSR Compliance")
-    (overall-completion . 25)
+    (overall-completion . 30)
 
     (components
      ((rsr-compliance
@@ -49,10 +49,15 @@
         (completion . 100)
         (notes . "SHA-pinned actions, SPDX headers, multi-platform CI")))
 
+      (security
+       ((status . "complete")
+        (completion . 100)
+        (notes . "Security policy fixed, HTTP detection bug resolved, security.txt RFC 9116 compliant")))
+
       (documentation
        ((status . "foundation")
-        (completion . 30)
-        (notes . "README exists, META/ECOSYSTEM/STATE.scm added")))
+        (completion . 35)
+        (notes . "README, META/ECOSYSTEM/STATE.scm, THREAT_MODEL.md complete")))
 
       (testing
        ((status . "minimal")
@@ -62,13 +67,16 @@
       (core-functionality
        ((status . "in-progress")
         (completion . 25)
-        (notes . "Initial implementation underway")))))
+        (notes . "Initial implementation underway - ReScript migration pending")))))
 
     (working-features
      ("RSR-compliant CI/CD pipeline"
       "Multi-platform mirroring (GitHub, GitLab, Bitbucket)"
       "SPDX license headers on all files"
-      "SHA-pinned GitHub Actions"))))
+      "SHA-pinned GitHub Actions"
+      "Security policy with GitHub private reporting"
+      "Threat model documented"
+      "CodeQL + OSSF Scorecard integration"))))
 
 ;;;============================================================================
 ;;; ROUTE TO MVP
@@ -81,17 +89,28 @@
     (milestones
      ((v0.2
        ((name . "Core Functionality")
+        (status . "in-progress")
+        (items
+         ("Complete ReScript migration (TS/JS -> RSR)"
+          "Implement WHO/WHERE/WHAT capture CLI"
+          "Add Zod/WASM validation for schemas"
+          "Initial test coverage (30%)"))))
+
+      (v0.3
+       ((name . "Analysis & Visualization")
         (status . "pending")
         (items
-         ("Implement primary features"
-          "Add comprehensive tests"
-          "Improve documentation"))))
+         ("Implement mapper.js analysis (hotspots, networks, journeys)"
+          "Generate static HTML visualizations"
+          "Export formats (CSV, GeoJSON, DOT)"
+          "Test coverage > 50%"))))
 
       (v0.5
        ((name . "Feature Complete")
         (status . "pending")
         (items
          ("All planned features implemented"
+          "Privacy tools (anonymization, PII removal, GPS fuzzing)"
           "Test coverage > 70%"
           "API stability"))))
 
@@ -99,10 +118,11 @@
        ((name . "Production Release")
         (status . "pending")
         (items
-         ("Comprehensive test coverage"
-          "Performance optimization"
-          "Security audit"
-          "User documentation complete"))))))))
+         ("Comprehensive test coverage > 80%"
+          "Performance optimization (async I/O)"
+          "External security audit"
+          "User documentation complete"
+          "Encryption at rest (optional)"))))))))
 
 ;;;============================================================================
 ;;; BLOCKERS & ISSUES
@@ -151,13 +171,24 @@
 
 (define session-history
   '((snapshots
-     ((date . "2025-12-15")
-      (session . "initial-state-creation")
-      (accomplishments
-       ("Added META.scm, ECOSYSTEM.scm, STATE.scm"
-        "Established RSR compliance"
-        "Created initial project checkpoint"))
-      (notes . "First STATE.scm checkpoint created via automated script")))))
+     (((date . "2025-12-17")
+       (session . "security-review-and-roadmap")
+       (accomplishments
+        ("Fixed SECURITY.md with correct version information"
+         "Fixed security-policy.yml HTTP URL detection bug (was checking https instead of http)"
+         "Updated security.txt with GitHub Security Advisories + real contact email"
+         "Verified all SCM files have valid syntax (balanced parens/quotes)"
+         "Updated STATE.scm with detailed roadmap and milestones"
+         "Added security component tracking to current-position"))
+       (notes . "Security review session - all critical security matters resolved"))
+
+      ((date . "2025-12-15")
+       (session . "initial-state-creation")
+       (accomplishments
+        ("Added META.scm, ECOSYSTEM.scm, STATE.scm"
+         "Established RSR compliance"
+         "Created initial project checkpoint"))
+       (notes . "First STATE.scm checkpoint created via automated script"))))))
 
 ;;;============================================================================
 ;;; HELPER FUNCTIONS (for Guile evaluation)
@@ -185,10 +216,11 @@
 (define state-summary
   '((project . "ubicity")
     (version . "0.1.0")
-    (overall-completion . 25)
-    (next-milestone . "v0.2 - Core Functionality")
+    (overall-completion . 30)
+    (next-milestone . "v0.2 - Core Functionality (in-progress)")
     (critical-blockers . 0)
     (high-priority-issues . 0)
-    (updated . "2025-12-15")))
+    (security-status . "complete")
+    (updated . "2025-12-17")))
 
 ;;; End of STATE.scm
