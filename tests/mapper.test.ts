@@ -3,7 +3,7 @@
  * Tests pattern detection, hotspots, networks, and journeys
  */
 
-import { assertEquals, assert } from '@std/assert';
+import { assert, assertEquals } from '@std/assert';
 
 Deno.test('Mapper - Hotspot detection', () => {
   const experiences = [

@@ -11,10 +11,10 @@ export async function initWasm(): Promise<void> {
   // Load WASM module
   const wasmPath = new URL('../wasm/pkg/ubicity_wasm_bg.wasm', import.meta.url);
   const wasmBytes = await Deno.readFile(wasmPath);
-  const wasmModule = await WebAssembly.instantiate(wasmBytes);
+  const wasmResult = await WebAssembly.instantiate(wasmBytes);
 
   // Initialize exports
-  const { instance } = wasmModule;
+  const { instance } = wasmResult;
   wasmModule = instance.exports;
 }
 

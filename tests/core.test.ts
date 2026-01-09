@@ -3,7 +3,7 @@
  * Tests the fundamental learning experience capture and storage
  */
 
-import { assertEquals, assertExists, assertRejects } from '@std/assert';
+import { assertEquals, assertExists } from '@std/assert';
 import { join } from '@std/path';
 import { ensureDir, exists } from '@std/fs';
 

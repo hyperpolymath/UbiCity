@@ -27,7 +27,7 @@ Deno.bench('Mapper - Hotspot detection (100 experiences)', () => {
     return acc;
   }, {} as Record<string, typeof experiences>);
 
-  const hotspots = Object.entries(byLocation).filter(([_, exps]) =>
+  const _hotspots = Object.entries(byLocation).filter(([_, exps]) =>
     exps.length >= 5
   );
 });

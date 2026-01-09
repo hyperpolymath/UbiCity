@@ -3,7 +3,7 @@
  * Tests CSV, GeoJSON, DOT, and Markdown exports
  */
 
-import { assertEquals, assert } from '@std/assert';
+import { assert, assertEquals } from '@std/assert';
 
 Deno.test('Export - CSV format generation', () => {
   const experiences = [

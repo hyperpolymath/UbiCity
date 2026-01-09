@@ -111,7 +111,10 @@ export class ExperienceStorage {
     return filepath;
   }
 
-  async saveVisualization(html: string, name = 'ubicity-map.html'): Promise<string> {
+  async saveVisualization(
+    html: string,
+    name = 'ubicity-map.html',
+  ): Promise<string> {
     await this.ensureDirectories();
 
     const filepath = join(this.storageDir, name);

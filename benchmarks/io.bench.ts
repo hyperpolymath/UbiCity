@@ -24,17 +24,21 @@ Deno.bench('I/O - Write single experience', async () => {
   await Deno.remove(file);
 });
 
-Deno.bench('I/O - Read single experience', { group: 'io', baseline: true }, async () => {
-  await ensureDir(BENCH_DATA_DIR);
+Deno.bench(
+  'I/O - Read single experience',
+  { group: 'io', baseline: true },
+  async () => {
+    await ensureDir(BENCH_DATA_DIR);
 
-  const file = join(BENCH_DATA_DIR, 'test.json');
-  await Deno.writeTextFile(file, JSON.stringify({ id: 'test' }));
+    const file = join(BENCH_DATA_DIR, 'test.json');
+    await Deno.writeTextFile(file, JSON.stringify({ id: 'test' }));
 
-  const content = await Deno.readTextFile(file);
-  JSON.parse(content);
+    const content = await Deno.readTextFile(file);
+    JSON.parse(content);
 
-  await Deno.remove(file);
-});
+    await Deno.remove(file);
+  },
+);
 
 Deno.bench('I/O - Batch write 10 experiences', async () => {
   await ensureDir(BENCH_DATA_DIR);

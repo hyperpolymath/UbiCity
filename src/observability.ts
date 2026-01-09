@@ -116,7 +116,10 @@ export class Logger {
 
     // Console output
     const emoji = { debug: '🔍', info: 'ℹ️ ', warn: '⚠️ ', error: '❌' };
-    console.log(`${emoji[level]} [${entry.timestamp}] ${message}`, context || '');
+    console.log(
+      `${emoji[level]} [${entry.timestamp}] ${message}`,
+      context || '',
+    );
   }
 
   debug(message: string, context?: Record<string, unknown>): void {

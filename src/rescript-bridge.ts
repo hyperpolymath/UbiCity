@@ -7,7 +7,13 @@
 // Import the compiled UbiCity module
 import * as UbiCity from '../src-rescript/UbiCity.res.js';
 
-export type { Coordinates, Location, Learner, Context, LearningExperience } from '../src-rescript/UbiCity.res.js';
+export type {
+  Context,
+  Coordinates,
+  Learner,
+  LearningExperience,
+  Location,
+} from '../src-rescript/UbiCity.res.js';
 
 /**
  * Create a validated learning experience using ReScript's type system
@@ -17,7 +23,10 @@ export function createLearningExperience(data: {
   timestamp?: string;
   learner: { id: string; name?: string; interests?: string[] };
   context: {
-    location: { name: string; coordinates?: { latitude: number; longitude: number } };
+    location: {
+      name: string;
+      coordinates?: { latitude: number; longitude: number };
+    };
     situation?: string;
     connections?: string[];
   };
@@ -49,7 +58,11 @@ export function createLearningExperience(data: {
     throw new Error(location._0);
   }
 
-  const context = UbiCity.Context.make(location._0, data.context.situation, data.context.connections);
+  const context = UbiCity.Context.make(
+    location._0,
+    data.context.situation,
+    data.context.connections,
+  );
 
   const experience = UbiCity.ExperienceData.make(
     data.experience.type,

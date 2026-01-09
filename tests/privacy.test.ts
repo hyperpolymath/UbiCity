@@ -3,7 +3,7 @@
  * Tests PII removal, location fuzzing, and data sanitization
  */
 
-import { assertEquals, assert } from '@std/assert';
+import { assert, assertEquals } from '@std/assert';
 import { crypto } from '@std/crypto';
 
 Deno.test('Privacy - Learner ID anonymization', async () => {
@@ -142,9 +142,9 @@ Deno.test('Privacy - Data minimization', () => {
   };
 
   // Verify only essential data retained
-  assertEquals(minimal.learner.hasOwnProperty('email'), false);
-  assertEquals(minimal.learner.hasOwnProperty('phone'), false);
-  assertEquals(minimal.context.hasOwnProperty('weather'), false);
+  assertEquals(Object.hasOwn(minimal.learner, 'email'), false);
+  assertEquals(Object.hasOwn(minimal.learner, 'phone'), false);
+  assertEquals(Object.hasOwn(minimal.context, 'weather'), false);
 });
 
 Deno.test('Privacy - Shareable dataset generation', () => {
